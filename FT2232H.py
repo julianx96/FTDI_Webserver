@@ -393,8 +393,8 @@ class FTDI2232H():
             self.Interface1 = GpioMpsseController()
             self.Interface2 = GpioMpsseController()
 
-            self.Interface1.configure(url='ftdi://ftdi:2232:FTWWP6IJ/1', direction=self.bitmask_direction_interface1, frequency=1000000)
-            self.Interface2.configure(url='ftdi://ftdi:2232:FTWWP6IJ/2', direction=self.bitmask_direction_interface2, frequency=1000000)
+            self.Interface1.configure(url=self.url[:-1]+'1', direction=self.bitmask_direction_interface1, frequency=1000000)
+            self.Interface2.configure(url=self.url[:-1]+'2', direction=self.bitmask_direction_interface2, frequency=1000000)
 
             #print(self.Interface1.write(0x0000))
 
