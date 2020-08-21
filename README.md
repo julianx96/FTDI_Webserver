@@ -27,6 +27,6 @@ python3 main.py
 
 Server
 ---
-The server can be setup page for the FTDI Module can be reached by the URL http:127.0.0.1:5000/setup
+The server setup page for the FTDI Module can be reached by the URL http:127.0.0.1:5000/setup
 
 By clicking the Apply Button you will get redirectet to the GUI control page
