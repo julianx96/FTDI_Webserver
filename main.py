@@ -102,6 +102,7 @@ def setGPIODirection():
         gpio = json_data.get('GPIO')
         direction = json_data.get('direction')
         ftdi0.set_gpio_direction(gpio=gpio, direction=direction)
+        return jsonify({'GPIO':gpio, 'direction': direction})
 
 @app.route('/gui', methods=['POST','GET'])
 def gui():
