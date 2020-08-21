@@ -4,7 +4,7 @@
 
 Requirements
 ---
-This project uses Python3.
+This project uses Python3.5 or higher.
 The required Hardware is a FT2232H Mini Module, which requires a python module named pyftdi. 
 To install required moduls you can run the following command in your shell:
 ```
