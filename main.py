@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, render_template, url_for, redirect, request
 from pyftdi.ftdi import USBError, FtdiError
-from FTDI2232H import *
+from FT2232H import *
 
 app = Flask(__name__)
 
