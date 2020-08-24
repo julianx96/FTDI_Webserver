@@ -539,6 +539,11 @@ class FTDI2232H():
 
 
     def getColor(self):
+        """Reads the Input of the GPIOs. Afterwards it translates every GPIO state to a color. Either Green (High voltage) or Gray (Low voltage).
+        These colors will be displayed in the GUI.
+
+        :return: List of strings. Returns the color which will be displayed for the Buttons and circles on the GUI.
+        """
         colors = {}
         self.read_input_gpio()
         for i in range(16):
@@ -566,26 +571,31 @@ class FTDI2232H():
         return colors
 
     def get_direction_array(self):
+        """Takes information about the direction of each GPIO and returns them in a list. The function is primarly used for the GUI.
+
+        :return: List of Strings. Returns Information about the direction (input/ouput) for each GPIO.
+        """
         io_array = {}
         for i in range(16):
             direction = self.gpio_array_interface1[i]['direction']
             if direction != 0x0000:
-                #io_array.append('output')
                 io_array[i] = 'output'
             else:
-                #io_array.append('input')
                 io_array[i] = 'input'
         for i in range(16):
             direction = self.gpio_array_interface2[i]['direction']
             if direction != 0x0000:
-                #io_array.append('output')
                 io_array[16+i] = 'output'
             else:
-                #io_array.append('input')
                 io_array[16+i] = 'input'
         return io_array
 
     def get_input_output_from_request(self, request):
+        """Takes a post request of the GUI setup page and converts it into a bitmask, which can be written to the FTDI Modul to configure the direction of the GPIOs.
+
+        :param request: JSON Data containing information about the configured direction of the GPIOs in the GUI setup page.
+        :return:
+        """
         interface1_IO_array = []
         interface2_IO_array = []
 
