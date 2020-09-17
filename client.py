@@ -28,8 +28,8 @@ def readGPIO(GPIO):
 	r = requests.get('http://127.0.0.1:5000/readGPIO', json={'GPIO':GPIO})
 	return r.json()['state']
 	
-setGPIODirection('AD2', 'input')
-writeGPIO('AD0', 0)
+#setGPIODirection('AD2', 'input')
 #writeGPIO('AD0', 0)
-setGPIODirection('AC4', 'input')
-print(readGPIO('AC2'))
+#writeGPIO('AD0', 0)
+#setGPIODirection('AC4', 'input')
+#print(readGPIO('AC2'))
