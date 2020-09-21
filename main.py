@@ -125,7 +125,16 @@ def gui(num):
 
     :return: Rendered HTML page
     """
-    return render_template('gui2.html', io_array=ftdi0.get_direction_array(), color=ftdi0.getColor(), ftdi=num)
+    if int(num) == 0:
+        return render_template('gui2.html', io_array=ftdi0.get_direction_array(), color=ftdi0.getColor(), ftdi=num)
+    elif int(num) == 1:
+        return render_template('gui2.html', io_array=ftdi1.get_direction_array(), color=ftdi1.getColor(), ftdi=num)
+    elif int(num) == 2:
+        return render_template('gui2.html', io_array=ftdi2.get_direction_array(), color=ftdi2.getColor(), ftdi=num)
+    elif int(num) == 3:
+        return render_template('gui2.html', io_array=ftdi3.get_direction_array(), color=ftdi3.getColor(), ftdi=num)
+    elif int(num) == 4:
+        return render_template('gui2.html', io_array=ftdi4.get_direction_array(), color=ftdi4.getColor(), ftdi=num)
 
 
 @app.route('/getColorJSON', methods=['GET'])
