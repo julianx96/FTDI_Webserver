@@ -28,8 +28,8 @@ def send_json_data():
         gpio = json_data.get('GPIO')
         return jsonify({'GPIO':gpio, 'state':ftdi0.map_string_to_gpio[gpio]['GPIO']['input_state']})
 
-@app.route('/setup', methods=['GET','POST'])
-def setup():
+@app.route('/setup/<num>', methods=['GET','POST'])
+def setup(num):
     """Renders HTML page for FTDI setup if accessed by Webbrowser.
     Accesed by URL http://127.0.0.1:5000/setup
     By clicking the 'Apply' Button on the Webpage, the direction settings are applied to the FTDI.
@@ -38,10 +38,24 @@ def setup():
     :return: Returns Webpage or redirect to GUI page
     """
     if request.method == 'POST':
-        mask_direction_interface1, mask_direction_interface2 = ftdi0.get_input_output_from_request(request.form)
-        ftdi0.set_direction_2(bitmask_i1=mask_direction_interface1, bitmask_i2=mask_direction_interface2)
-        return redirect(url_for('gui'))
-    return render_template('setup.html')
+        if int(num) == 0:
+            mask_direction_interface1, mask_direction_interface2 = ftdi0.get_input_output_from_request(request.form)
+            ftdi0.set_direction_2(bitmask_i1=mask_direction_interface1, bitmask_i2=mask_direction_interface2)
+        elif int(num) == 1:
+            mask_direction_interface1, mask_direction_interface2 = ftdi1.get_input_output_from_request(request.form)
+            ftdi1.set_direction_2(bitmask_i1=mask_direction_interface1, bitmask_i2=mask_direction_interface2)
+        elif int(num) == 2:
+            mask_direction_interface1, mask_direction_interface2 = ftdi2.get_input_output_from_request(request.form)
+            ftdi2.set_direction_2(bitmask_i1=mask_direction_interface1, bitmask_i2=mask_direction_interface2)
+        elif int(num) == 3:
+            mask_direction_interface1, mask_direction_interface2 = ftdi3.get_input_output_from_request(request.form)
+            ftdi3.set_direction_2(bitmask_i1=mask_direction_interface1, bitmask_i2=mask_direction_interface2)
+        elif int(num) == 4:
+            mask_direction_interface1, mask_direction_interface2 = ftdi4.get_input_output_from_request(request.form)
+            ftdi4.set_direction_2(bitmask_i1=mask_direction_interface1, bitmask_i2=mask_direction_interface2)
+        url = '.gui/FTDI{}'.format(str(num))
+        return redirect(url_for('gui', num=num))
+    return render_template('setup.html', ftdi=num)
 
 
 
@@ -104,14 +118,14 @@ def setGPIODirection():
         ftdi0.set_gpio_direction(gpio=gpio, direction=direction)
         return jsonify({'GPIO':gpio, 'direction': direction})
 
-@app.route('/gui', methods=['POST','GET'])
-def gui():
+@app.route('/gui/<num>', methods=['POST','GET'])
+def gui(num):
     """GUI which provides control over the state of output GPIOs and shows the state of input and output GPIOs.
     Accessed over Webrowser on URL http://127.0.0.1:5000/gui
 
     :return: Rendered HTML page
     """
-    return render_template('gui2.html', io_array=ftdi0.get_direction_array(), color=ftdi0.getColor())
+    return render_template('gui2.html', io_array=ftdi0.get_direction_array(), color=ftdi0.getColor(), ftdi=num)
 
 
 @app.route('/getColorJSON', methods=['GET'])
