@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Setup FTDI Module</title>
+    <title>Setup FT2232H Mini Module {{ ftdi }}</title>
     <style>
         table {
     border:none;
@@ -27,7 +27,8 @@ th {
 </head>
 <body>
 <center>
-<form name="myForm" action="/setup" method="post">
+    <h1>Setup Page FT2232H Mini Module {{ ftdi }}</h1>
+<form name="myForm" action="/setup/{{ ftdi }}" method="post">
 <p>
 <table>
     <th colspan="6">Interface 1</th>
