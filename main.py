@@ -71,13 +71,32 @@ def toggleGPIO():
     """
     if request.is_json:
         json_data = request.get_json()
+        ftdi = json_data.get("FTDI")
         gpio = json_data.get("GPIO")
         out_state = ftdi0.map_string_to_gpio[gpio]['GPIO']['output_state']
 
         if (out_state):
-            ftdi0.write_GPIO_LOW(gpio=gpio)
+            if int(ftdi) == 0:
+                ftdi0.write_GPIO_LOW(gpio=gpio)
+            elif int(ftdi) == 1:
+                ftdi1.write_GPIO_LOW(gpio=gpio)
+            elif int(ftdi) == 2:
+                ftdi2.write_GPIO_LOW(gpio=gpio)
+            elif int(ftdi) == 3:
+                ftdi3.write_GPIO_LOW(gpio=gpio)
+            elif int(ftdi) == 4:
+                ftdi4.write_GPIO_LOW(gpio=gpio)
         else:
-            ftdi0.write_GPIO_HIGH(gpio=gpio)
+            if int(ftdi) == 0:
+                ftdi0.write_GPIO_HIGH(gpio=gpio)
+            elif int(ftdi) == 1:
+                ftdi1.write_GPIO_HIGH(gpio=gpio)
+            elif int(ftdi) == 2:
+                ftdi2.write_GPIO_HIGH(gpio=gpio)
+            elif int(ftdi) == 3:
+                ftdi3.write_GPIO_HIGH(gpio=gpio)
+            elif int(ftdi) == 4:
+                ftdi4.write_GPIO_HIGH(gpio=gpio)
 
         return jsonify({'msg': gpio})
     else:
@@ -113,10 +132,20 @@ def setGPIODirection():
     """
     if request.is_json:
         json_data = request.get_json()
+        ftdi = json_data.get('FTDI')
         gpio = json_data.get('GPIO')
         direction = json_data.get('direction')
-        ftdi0.set_gpio_direction(gpio=gpio, direction=direction)
-        return jsonify({'GPIO':gpio, 'direction': direction})
+        if int(ftdi) == 0:
+            ftdi0.set_gpio_direction(gpio=gpio, direction=direction)
+        elif int(ftdi) == 1:
+            ftdi1.set_gpio_direction(gpio=gpio, direction=direction)
+        elif int(ftdi) == 2:
+            ftdi2.set_gpio_direction(gpio=gpio, direction=direction)
+        elif int(ftdi) == 3:
+            ftdi3.set_gpio_direction(gpio=gpio, direction=direction)
+        elif int(ftdi) == 4:
+            ftdi4.set_gpio_direction(gpio=gpio, direction=direction)
+        return jsonify({'FTDI': ftdi ,'GPIO':gpio, 'direction': direction})
 
 @app.route('/gui/<num>', methods=['POST','GET'])
 def gui(num):
@@ -146,8 +175,15 @@ def getColorJSON(num):
     """
     if int(num) == 0:
         colors = ftdi0.getColor()
-    else:
-        pass
+    elif int(num) == 1:
+        colors = ftdi1.getColor()
+    elif int(num) == 2:
+        colors = ftdi2.getColor()
+    elif int(num) == 3:
+        colors = ftdi3.getColor()
+    elif int(num) == 4:
+        colors = ftdi4.getColor()
+
     return jsonify(colors)
 
 @app.route('/getIOJSON/<num>', methods=['GET'])
@@ -159,8 +195,14 @@ def getIOJSON(num):
     """
     if int(num) == 0:
         io_array = ftdi0.get_direction_array()
-    else:
-        pass
+    elif int(num) == 1:
+        io_array = ftdi1.get_direction_array()
+    elif int(num) == 2:
+        io_array = ftdi2.get_direction_array()
+    elif int(num) == 3:
+        io_array = ftdi3.get_direction_array()
+    elif int(num) == 4:
+        io_array = ftdi4.get_direction_array()
     return jsonify(io_array)
 
 

@@ -72,7 +72,7 @@
               type: "POST",
               contentType: "application/json; charset=utf-8",
               url: $SCRIPT_ROOT+"/toggleGPIO",
-              data: JSON.stringify({GPIO: id.innerHTML}),
+              data: JSON.stringify({FTDI: {{ ftdi }} ,GPIO: id.innerHTML}),
               success: function (data) {
                 setColors();
               },

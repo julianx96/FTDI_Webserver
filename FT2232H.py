@@ -409,7 +409,7 @@ class FTDI2232H():
         if self.module == '2232H':
             if bitmask_i1 != None:
                 self.bitmask_direction_interface1 = bitmask_i1
-                self.Interface1.set_direction(pins=0xffff, direction=self.bitmask_direction_interface1)
+                self.Interface1.set_direction(pins=0xffff, direction=self.bitmask_direction_interface1) #kommentar
                 for i in range(16):
                     if self.bitmask_direction_interface1 & (1 << i) == (1 << i):
                         self.gpio_array_interface1[i]['direction'] = self.gpio_array_interface1[i]['register']
