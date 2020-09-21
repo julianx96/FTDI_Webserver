@@ -137,24 +137,30 @@ def gui(num):
         return render_template('gui2.html', io_array=ftdi4.get_direction_array(), color=ftdi4.getColor(), ftdi=num)
 
 
-@app.route('/getColorJSON', methods=['GET'])
-def getColorJSON():
+@app.route('/getColorJSON/<num>', methods=['GET'])
+def getColorJSON(num):
     """Returns state colors of GPIO (green: HIGH, silver: LOW) used by polling JavaScript which keeps the GUI page updated.
     Accesed by GET-Request to URL http://127.0.0.1:5000/getColorJSON.
 
     :return: JSON Data
     """
-    colors = ftdi0.getColor()
+    if int(num) == 0:
+        colors = ftdi0.getColor()
+    else:
+        pass
     return jsonify(colors)
 
-@app.route('/getIOJSON', methods=['GET'])
-def getIOJSON():
+@app.route('/getIOJSON/<num>', methods=['GET'])
+def getIOJSON(num):
     """Returns direction state of GPIO (input, output) used by polling JavaScript which keeps the GUI page updated.
     Accesed by GET-Request to URL http://127.0.0.1:5000/getIOJSON.
 
     :return: JSON Data
     """
-    io_array = ftdi0.get_direction_array()
+    if int(num) == 0:
+        io_array = ftdi0.get_direction_array()
+    else:
+        pass
     return jsonify(io_array)
 
 

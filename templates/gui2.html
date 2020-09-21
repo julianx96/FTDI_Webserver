@@ -82,7 +82,7 @@
 
         function getDataJSONColor() {
             $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
-            $.getJSON($SCRIPT_ROOT+"/getColorJSON").then(
+            $.getJSON($SCRIPT_ROOT+"/getColorJSON/" + {{ ftdi }}).then(
                 function(data) {
                     dataColor = data;
                     document.getElementById("AD0_in").style.backgroundColor = dataColor[0]
@@ -124,7 +124,7 @@
 
             $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
 
-            $.getJSON($SCRIPT_ROOT+"/getIOJSON").then(
+            $.getJSON($SCRIPT_ROOT+"/getIOJSON/"+{{ ftdi }}).then(
                 function(data) {
                     var dataIO = data;
                     var array_is_equal = true;
