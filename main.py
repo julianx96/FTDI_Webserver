@@ -208,5 +208,9 @@ def getIOJSON(num):
 
 if __name__ == '__main__':
     ftdi0 = FTDI2232H(url='ftdi://ftdi:2232:FTWWP6IJ/1')
+    #ftdi0.set_direction_2(0xffff, 0xffff)
+    #ftdi0 = FTDI2232H(url='ftdi://ftdi:2232:FT46S3T7/1')
+    #ftdi0.write_GPIO_HIGH(gpio='AD0')
     app.run()
 
+#usb.dst==3.255.2 || usb.dst==3.255.4

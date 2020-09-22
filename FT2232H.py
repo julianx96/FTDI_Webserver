@@ -428,10 +428,12 @@ class FTDI2232H():
                     else:
                         self.gpio_array_interface2[i]['direction'] = 0x0000
                         self.gpio_array_interface2[i]['GPIO']['output_state'] = None
+        #
+        self.write_output()
 
 
 
-    def set_gpio_direction(self, gpio, direction):
+    def set_gpio_direction(self, gpio, direction, state=None):
         """Sets the direction of one GPIO. The GPIO can be either configured as Input or Output.lol
 
         :param gpio: GPIO whose direction will be changed
@@ -442,15 +444,22 @@ class FTDI2232H():
         if gpio[0] == 'A':
             if direction == 'output':
                 self.bitmask_direction_interface1 |= pin['register']
+                self.gpio_array_interface1[gpio]['direction'] = self.gpio_array_interface1[gpio]['register']
+                self.set_output_state_gpio(gpio, state)
             else:
                 self.bitmask_direction_interface1 &= ~pin['register']
+                self.gpio_array_interface1[gpio]['direction'] = 0x0000
             self.set_direction_2(bitmask_i1=self.bitmask_direction_interface1)
         if gpio[0] == 'B':
             if direction == 'output':
                 self.bitmask_direction_interface2 |= pin['register']
+                self.gpio_array_interface1[gpio]['direction'] = self.gpio_array_interface1[gpio]['register']
+                self.set_output_state_gpio(gpio, state)
             else:
                 self.bitmask_direction_interface2 &= ~pin['register']
+                self.gpio_array_interface1[gpio]['direction'] = 0x0000
             self.set_direction_2(bitmask_i2=self.bitmask_direction_interface2)
+
 
     def read_input_gpio(self):
         """Reads the state on the Input GPIOs and writes them to the Dictionary, containing the GPIOs informations.

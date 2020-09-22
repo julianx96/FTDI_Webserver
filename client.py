@@ -9,7 +9,7 @@ def setGPIODirection(FTDI, GPIO, direction):
 	:param GPIO: string - GPIO to be changed (e.g. 'AD0')
 	:param direction: string - new direction (eather 'output' or 'input')
 	"""
-	requests.post('http://127.0.0.1:5000/setGPIODirection', json={'FTDI': FTDI ,'GPIO':GPIO, 'direction':direction})
+	requests.post('http://127.0.0.1:5000/setGPIODirection', json={'FTDI': FTDI ,'GPIO':GPIO, 'direction':direction, 'state': 'none'})
 	
 	
 def writeGPIO(GPIO, state):
