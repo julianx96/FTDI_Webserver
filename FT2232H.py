@@ -433,7 +433,7 @@ class FTDI2232H():
 
 
 
-    def set_gpio_direction(self, gpio, direction, state=None):
+    def set_gpio_direction(self, gpio, direction, state):
         """Sets the direction of one GPIO. The GPIO can be either configured as Input or Output.lol
 
         :param gpio: GPIO whose direction will be changed
@@ -444,20 +444,20 @@ class FTDI2232H():
         if gpio[0] == 'A':
             if direction == 'output':
                 self.bitmask_direction_interface1 |= pin['register']
-                self.gpio_array_interface1[gpio]['direction'] = self.gpio_array_interface1[gpio]['register']
+                pin['direction'] = pin['register']
                 self.set_output_state_gpio(gpio, state)
             else:
                 self.bitmask_direction_interface1 &= ~pin['register']
-                self.gpio_array_interface1[gpio]['direction'] = 0x0000
+                pin['direction'] = 0x0000
             self.set_direction_2(bitmask_i1=self.bitmask_direction_interface1)
         if gpio[0] == 'B':
             if direction == 'output':
                 self.bitmask_direction_interface2 |= pin['register']
-                self.gpio_array_interface1[gpio]['direction'] = self.gpio_array_interface1[gpio]['register']
+                pin['direction'] = pin['register']
                 self.set_output_state_gpio(gpio, state)
             else:
                 self.bitmask_direction_interface2 &= ~pin['register']
-                self.gpio_array_interface1[gpio]['direction'] = 0x0000
+                pin['direction'] = 0x0000
             self.set_direction_2(bitmask_i2=self.bitmask_direction_interface2)
 
 

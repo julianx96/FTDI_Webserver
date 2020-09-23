@@ -4,12 +4,12 @@ This python script contains examples for using the REST API as client
 
 import requests
 
-def setGPIODirection(FTDI, GPIO, direction):
+def setGPIODirection(FTDI, GPIO, direction, state=0):
 	"""
 	:param GPIO: string - GPIO to be changed (e.g. 'AD0')
 	:param direction: string - new direction (eather 'output' or 'input')
 	"""
-	requests.post('http://127.0.0.1:5000/setGPIODirection', json={'FTDI': FTDI ,'GPIO':GPIO, 'direction':direction, 'state': 'none'})
+	requests.post('http://127.0.0.1:5000/setGPIODirection', json={'FTDI': FTDI ,'GPIO':GPIO, 'direction':direction, 'state': state})
 	
 	
 def writeGPIO(GPIO, state):

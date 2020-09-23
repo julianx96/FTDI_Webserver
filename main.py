@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, render_template, url_for, redirect, request
 from pyftdi.ftdi import USBError, FtdiError
 from FT2232H import *
+import pyvisa
 
 app = Flask(__name__)
 
@@ -135,16 +136,17 @@ def setGPIODirection():
         ftdi = json_data.get('FTDI')
         gpio = json_data.get('GPIO')
         direction = json_data.get('direction')
+        state = json_data.get('state')
         if int(ftdi) == 0:
-            ftdi0.set_gpio_direction(gpio=gpio, direction=direction)
+            ftdi0.set_gpio_direction(gpio=gpio, direction=direction, state=state)
         elif int(ftdi) == 1:
-            ftdi1.set_gpio_direction(gpio=gpio, direction=direction)
+            ftdi1.set_gpio_direction(gpio=gpio, direction=direction, state=state)
         elif int(ftdi) == 2:
-            ftdi2.set_gpio_direction(gpio=gpio, direction=direction)
+            ftdi2.set_gpio_direction(gpio=gpio, direction=direction, state=state)
         elif int(ftdi) == 3:
-            ftdi3.set_gpio_direction(gpio=gpio, direction=direction)
+            ftdi3.set_gpio_direction(gpio=gpio, direction=direction, state=state)
         elif int(ftdi) == 4:
-            ftdi4.set_gpio_direction(gpio=gpio, direction=direction)
+            ftdi4.set_gpio_direction(gpio=gpio, direction=direction, state=state)
         return jsonify({'FTDI': ftdi ,'GPIO':gpio, 'direction': direction})
 
 @app.route('/gui/<num>', methods=['POST','GET'])
@@ -206,11 +208,29 @@ def getIOJSON(num):
     return jsonify(io_array)
 
 
+def set_voltage(channel, voltage):
+    inst.write(':INST:NSEL {}'.format(str(channel)))
+    #time.sleep(0.1)
+    inst.write(':VOLT {}'.format(str(voltage)))
+
+def channel_high(channel):
+    inst.write(':OUTP CH{},1'.format(str(channel)))
+
+def channel_low(channel):
+    inst.write(':OUTP CH{},0'.format(str(channel)))
+
 if __name__ == '__main__':
-    ftdi0 = FTDI2232H(url='ftdi://ftdi:2232:FTWWP6IJ/1')
+    ftdi0 = FTDI2232H(url='ftdi://ftdi:2232:FT46S3T7/1')
     #ftdi0.set_direction_2(0xffff, 0xffff)
     #ftdi0 = FTDI2232H(url='ftdi://ftdi:2232:FT46S3T7/1')
     #ftdi0.write_GPIO_HIGH(gpio='AD0')
+    rm = pyvisa.ResourceManager()
+    try:
+        inst = rm.open_resource('USB0::0x1AB1::0x0E11::DP8B205101806::INSTR')
+        set_voltage(1, 24)
+        channel_high(1)
+    except Exception as e:
+        print(e)
     app.run()
 
 #usb.dst==3.255.2 || usb.dst==3.255.4
