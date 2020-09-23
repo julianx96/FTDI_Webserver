@@ -1,6 +1,8 @@
 from flask import Flask, jsonify, render_template, url_for, redirect, request
 from pyftdi.ftdi import USBError, FtdiError
 from FT2232H import *
+from multiprocessing import Process
+
 import pyvisa
 #from sys import exit
 
@@ -252,6 +254,14 @@ def getIOJSON(num):
         io_array = ftdi4.get_direction_array()
     return jsonify(io_array)
 
+#@app.errorhandler(Exception)
+#def handle_exception(e):
+#    print(e)
+#    print("so")
+#    server.terminate()
+#    server.join()
+#    sys.exit()
+
 
 def set_voltage(channel, voltage):
     inst.write(':INST:NSEL {}'.format(str(channel)))
@@ -265,18 +275,38 @@ def channel_low(channel):
     inst.write(':OUTP CH{},0'.format(str(channel)))
 
 if __name__ == '__main__':
+    #ftdi0 = FTDI2232H(url='ftdi://ftdi:2232:FT46S3T7/1')
     try:
-        #ftdi0 = FTDI2232H(url='ftdi://ftdi:2232:FT46S3T7/1')
         ftdi0 = FTDI2232H(url='ftdi://ftdi:2232:FTWWP6IJ/1')
-
-        #rm = pyvisa.ResourceManager()
-        #inst = rm.open_resource('USB0::0x1AB1::0x0E11::DP8B205101806::INSTR')
-        #set_voltage(1, 24)
-        #channel_high(1)
-
-        app.run()
     except Exception as e:
         print(e)
-        sys.exit()
+    try:
+        ftdi1 = FTDI2232H(url='andere URL')
+    except Exception as e:
+        print(e)
+    try:
+        ftdi2 = FTDI2232H(url='andere URL')
+    except Exception as e:
+        print(e)
+    try:
+        ftdi3 = FTDI2232H(url='andere URL')
+    except Exception as e:
+        print(e)
+    try:
+        ftdi4 = FTDI2232H(url='andere URL')
+    except Exception as e:
+        print(e)
+    try:
+        rm = pyvisa.ResourceManager()
+        inst = rm.open_resource('USB0::0x1AB1::0x0E11::DP8B205101806::INSTR')
+        set_voltage(1, 24)
+        channel_high(1)
+    except Exception as e:
+        print(e)
+
+    #server = Process(target=app.run())
+    #server.start()
+    app.run()
+
 
 #usb.dst==3.255.2 || usb.dst==3.255.4

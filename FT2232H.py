@@ -476,16 +476,16 @@ class FTDI2232H():
 
         :return:
         """
-        try:
-            input1 = self.Interface1.read()
+        #try:
+        input1 = self.Interface1.read()
             #print(input1)
-            input2 = self.Interface2.read()
+        input2 = self.Interface2.read()
             # Interface 1
-        except Exception as e:
-            print(e)
-            print("3")
+        #except Exception as e:
+        #    print(e)
+        #    print("3")
             #raise SystemExit
-            #sys.exit()
+        #    sys.exit()
             #exit()
 
         for i in range(16):
