@@ -1,6 +1,6 @@
 from pyftdi.gpio import GpioMpsseController
 from pyftdi.ftdi import FtdiError, USBError
-from sys import exit
+import sys
 
 class FTDI2232H():
     """Class for FT2232H Mini Module
@@ -409,7 +409,12 @@ class FTDI2232H():
         if self.module == '2232H':
             if bitmask_i1 != None:
                 self.bitmask_direction_interface1 = bitmask_i1
-                self.Interface1.set_direction(pins=0xffff, direction=self.bitmask_direction_interface1) #kommentar
+                try:
+                    self.Interface1.set_direction(pins=0xffff, direction=self.bitmask_direction_interface1) #kommentar
+                except Exception as e:
+                    print(e)
+                    print("1")
+                    sys.exit()
                 for i in range(16):
                     if self.bitmask_direction_interface1 & (1 << i) == (1 << i):
                         self.gpio_array_interface1[i]['direction'] = self.gpio_array_interface1[i]['register']
@@ -420,7 +425,12 @@ class FTDI2232H():
 
             if bitmask_i2 != None:
                 self.bitmask_direction_interface2 = bitmask_i2
-                self.Interface2.set_direction(pins=0xffff, direction=self.bitmask_direction_interface2)
+                try:
+                    self.Interface2.set_direction(pins=0xffff, direction=self.bitmask_direction_interface2)
+                except Exception as e:
+                    print(e)
+                    print("2")
+                    sys.exit()
                 for i in range(16):
                     if self.bitmask_direction_interface2 & (1 << i) == (1 << i):
                         self.gpio_array_interface2[i]['direction'] = self.gpio_array_interface2[i]['register']
@@ -471,8 +481,12 @@ class FTDI2232H():
             #print(input1)
             input2 = self.Interface2.read()
             # Interface 1
-        except (FtdiError, USBError):
-            self.reconnect()
+        except Exception as e:
+            print(e)
+            print("3")
+            #raise SystemExit
+            #sys.exit()
+            #exit()
 
         for i in range(16):
             if(int(input1[0]) & (1 << i)) == (1 << i):
@@ -543,8 +557,13 @@ class FTDI2232H():
 
         :return:
         """
-        self.Interface1.write(self.bitmask_output_state_interface1)
-        self.Interface2.write(self.bitmask_output_state_interface2)
+        try:
+            self.Interface1.write(self.bitmask_output_state_interface1)
+            self.Interface2.write(self.bitmask_output_state_interface2)
+        except Exception as e:
+            print(e)
+            print("4")
+            sys.exit()
 
 
     def getColor(self):
@@ -652,5 +671,4 @@ class FTDI2232H():
                 interface2_IO_bitmask |= 1 << i
         return interface1_IO_bitmask, interface2_IO_bitmask
 
-    def reconnect(self):
-        print('hm')
+

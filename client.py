@@ -12,20 +12,20 @@ def setGPIODirection(FTDI, GPIO, direction, state=0):
 	requests.post('http://127.0.0.1:5000/setGPIODirection', json={'FTDI': FTDI ,'GPIO':GPIO, 'direction':direction, 'state': state})
 	
 	
-def writeGPIO(GPIO, state):
+def writeGPIO(FTDI, GPIO, state):
 	"""
 	:param GPIO: string - GPIO to be changed (e.g. 'AD0')
 	:param state: int - new state (eather 0 or 1)
 	"""
-	requests.post('http://127.0.0.1:5000/writeGPIO', json={'GPIO':GPIO, 'state':state})
+	requests.post('http://127.0.0.1:5000/writeGPIO', json={'FTDI': FTDI ,'GPIO':GPIO, 'state':state})
 
 	
-def readGPIO(GPIO):
+def readGPIO(FTDI, GPIO):
 	"""
 	:param GPIO: string - GPIO to be changed (e.g. 'AD0')
 	:return: int - state
 	"""
-	r = requests.get('http://127.0.0.1:5000/readGPIO', json={'GPIO':GPIO})
+	r = requests.get('http://127.0.0.1:5000/readGPIO', json={'FTDI': FTDI ,'GPIO':GPIO})
 	return r.json()['state']
 	
 #setGPIODirection(0, 'AD2', 'input')
