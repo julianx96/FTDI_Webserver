@@ -399,7 +399,7 @@ class FTDI2232H():
             #print(self.Interface1.write(0x0000))
 
 
-    def set_direction_2(self, bitmask_i1=None, bitmask_i2=None):
+    def set_direction_2(self, bitmask_i1=None, bitmask_i2=None, state_i1=None, state_i2=None):
         """Sets the direction of the GPIOs. They can be either configured as Output or Input.
 
         :param bitmask_i1: Bitmask that specifies the direction of the GPIOs from Interface 1
@@ -419,6 +419,9 @@ class FTDI2232H():
                     if self.bitmask_direction_interface1 & (1 << i) == (1 << i):
                         self.gpio_array_interface1[i]['direction'] = self.gpio_array_interface1[i]['register']
                         self.gpio_array_interface1[i]['GPIO']['input_state'] = None
+                        if state_i1 != None:
+                            gpio = self.gpio_array_interface1[i]['GPIO']['Port'] + str(self.gpio_array_interface1[i]['GPIO']['Pin'])
+                            self.set_output_state_gpio(gpio=gpio, state=state_i1[i])
                     else:
                         self.gpio_array_interface1[i]['direction'] = 0x0000
                         self.gpio_array_interface1[i]['GPIO']['output_state'] = None
@@ -435,6 +438,9 @@ class FTDI2232H():
                     if self.bitmask_direction_interface2 & (1 << i) == (1 << i):
                         self.gpio_array_interface2[i]['direction'] = self.gpio_array_interface2[i]['register']
                         self.gpio_array_interface2[i]['GPIO']['input_state'] = None
+                        if state_i2 != None:
+                            gpio = self.gpio_array_interface2[i]['GPIO']['Port'] + str(self.gpio_array_interface2[i]['GPIO']['Pin'])
+                            self.set_output_state_gpio(gpio=gpio, state=state_i2[i])
                     else:
                         self.gpio_array_interface2[i]['direction'] = 0x0000
                         self.gpio_array_interface2[i]['GPIO']['output_state'] = None
@@ -562,8 +568,6 @@ class FTDI2232H():
             self.Interface2.write(self.bitmask_output_state_interface2)
         except Exception as e:
             print(e)
-            print("4")
-            sys.exit()
 
 
     def getColor(self):
@@ -630,6 +634,9 @@ class FTDI2232H():
         interface1_IO_bitmask = 0x0000
         interface2_IO_bitmask = 0x0000
 
+        interface1_output_state_array = []
+        interface2_output_state_array = []
+
         interface1_IO_array.append(request['AD0_out_in'])
         interface1_IO_array.append(request['AD1_out_in'])
         interface1_IO_array.append(request['AD2_out_in'])
@@ -664,11 +671,45 @@ class FTDI2232H():
         interface2_IO_array.append(request['BC6_out_in'])
         interface2_IO_array.append(request['BC7_out_in'])
 
+        interface1_output_state_array.append(request['AD0_out_01'])
+        interface1_output_state_array.append(request['AD1_out_in'])
+        interface1_output_state_array.append(request['AD2_out_in'])
+        interface1_output_state_array.append(request['AD3_out_in'])
+        interface1_output_state_array.append(request['AD4_out_in'])
+        interface1_output_state_array.append(request['AD5_out_in'])
+        interface1_output_state_array.append(request['AD6_out_in'])
+        interface1_output_state_array.append(request['AD7_out_in'])
+        interface1_output_state_array.append(request['AC0_out_in'])
+        interface1_output_state_array.append(request['AC1_out_in'])
+        interface1_output_state_array.append(request['AC2_out_in'])
+        interface1_output_state_array.append(request['AC3_out_in'])
+        interface1_output_state_array.append(request['AC4_out_in'])
+        interface1_output_state_array.append(request['AC5_out_in'])
+        interface1_output_state_array.append(request['AC6_out_in'])
+        interface1_output_state_array.append(request['AC7_out_in'])
+
+        interface2_output_state_array.append(request['BD0_out_in'])
+        interface2_output_state_array.append(request['BD1_out_in'])
+        interface2_output_state_array.append(request['BD2_out_in'])
+        interface2_output_state_array.append(request['BD3_out_in'])
+        interface2_output_state_array.append(request['BD4_out_in'])
+        interface2_output_state_array.append(request['BD5_out_in'])
+        interface2_output_state_array.append(request['BD6_out_in'])
+        interface2_output_state_array.append(request['BD7_out_in'])
+        interface2_output_state_array.append(request['BC0_out_in'])
+        interface2_output_state_array.append(request['BC1_out_in'])
+        interface2_output_state_array.append(request['BC2_out_in'])
+        interface2_output_state_array.append(request['BC3_out_in'])
+        interface2_output_state_array.append(request['BC4_out_in'])
+        interface2_output_state_array.append(request['BC5_out_in'])
+        interface2_output_state_array.append(request['BC6_out_in'])
+        interface2_output_state_array.append(request['BC7_out_in'])
+
         for i in range(16):
             if interface1_IO_array[i] == 'output':
                 interface1_IO_bitmask |= 1 << i
             if interface2_IO_array[i] == 'output':
                 interface2_IO_bitmask |= 1 << i
-        return interface1_IO_bitmask, interface2_IO_bitmask
+        return interface1_IO_bitmask, interface2_IO_bitmask, interface1_output_state_array, interface2_output_state_array
 
 

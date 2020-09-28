@@ -55,21 +55,22 @@ def setup(num):
     :return: Returns Webpage or redirect to GUI page
     """
     if request.method == 'POST':
+        print(request.form)
         if int(num) == 0:
-            mask_direction_interface1, mask_direction_interface2 = ftdi0.get_input_output_from_request(request.form)
-            ftdi0.set_direction_2(bitmask_i1=mask_direction_interface1, bitmask_i2=mask_direction_interface2)
+            mask_direction_interface1, mask_direction_interface2, i1_out_state_array, i2_out_state_array = ftdi0.get_input_output_from_request(request.form)
+            ftdi0.set_direction_2(bitmask_i1=mask_direction_interface1, bitmask_i2=mask_direction_interface2, state_i1=i1_out_state_array, state_i2=i2_out_state_array)
         elif int(num) == 1:
-            mask_direction_interface1, mask_direction_interface2 = ftdi1.get_input_output_from_request(request.form)
-            ftdi1.set_direction_2(bitmask_i1=mask_direction_interface1, bitmask_i2=mask_direction_interface2)
+            mask_direction_interface1, mask_direction_interface2, i1_out_state_array, i2_out_state_array = ftdi1.get_input_output_from_request(request.form)
+            ftdi1.set_direction_2(bitmask_i1=mask_direction_interface1, bitmask_i2=mask_direction_interface2, state_i1=i1_out_state_array, state_i2=i2_out_state_array)
         elif int(num) == 2:
-            mask_direction_interface1, mask_direction_interface2 = ftdi2.get_input_output_from_request(request.form)
-            ftdi2.set_direction_2(bitmask_i1=mask_direction_interface1, bitmask_i2=mask_direction_interface2)
+            mask_direction_interface1, mask_direction_interface2, i1_out_state_array, i2_out_state_array = ftdi2.get_input_output_from_request(request.form)
+            ftdi2.set_direction_2(bitmask_i1=mask_direction_interface1, bitmask_i2=mask_direction_interface2, state_i1=i1_out_state_array, state_i2=i2_out_state_array)
         elif int(num) == 3:
-            mask_direction_interface1, mask_direction_interface2 = ftdi3.get_input_output_from_request(request.form)
-            ftdi3.set_direction_2(bitmask_i1=mask_direction_interface1, bitmask_i2=mask_direction_interface2)
+            mask_direction_interface1, mask_direction_interface2, i1_out_state_array, i2_out_state_array = ftdi3.get_input_output_from_request(request.form)
+            ftdi3.set_direction_2(bitmask_i1=mask_direction_interface1, bitmask_i2=mask_direction_interface2, state_i1=i1_out_state_array, state_i2=i2_out_state_array)
         elif int(num) == 4:
-            mask_direction_interface1, mask_direction_interface2 = ftdi4.get_input_output_from_request(request.form)
-            ftdi4.set_direction_2(bitmask_i1=mask_direction_interface1, bitmask_i2=mask_direction_interface2)
+            mask_direction_interface1, mask_direction_interface2, i1_out_state_array, i2_out_state_array = ftdi4.get_input_output_from_request(request.form)
+            ftdi4.set_direction_2(bitmask_i1=mask_direction_interface1, bitmask_i2=mask_direction_interface2, state_i1=i1_out_state_array, state_i2=i2_out_state_array)
         url = '.gui/FTDI{}'.format(str(num))
         return redirect(url_for('gui', num=num))
     return render_template('setup.html', ftdi=num)
@@ -269,7 +270,7 @@ def channel_low(channel):
 if __name__ == '__main__':
     #ftdi0 = FTDI2232H(url='ftdi://ftdi:2232:FT46S3T7/1')
     try:
-        ftdi0 = FTDI2232H(url='ftdi://ftdi:2232:FTWWP6IJ/1')
+        ftdi0 = FTDI2232H(url='ftdi://ftdi:2232:FT5G94I0/1')
     except Exception as e:
         print(e)
     try:
