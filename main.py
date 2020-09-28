@@ -1,10 +1,8 @@
 from flask import Flask, jsonify, render_template, url_for, redirect, request
 from pyftdi.ftdi import USBError, FtdiError
 from FT2232H import *
-from multiprocessing import Process
 
 import pyvisa
-#from sys import exit
 
 app = Flask(__name__)
 
@@ -254,14 +252,8 @@ def getIOJSON(num):
         io_array = ftdi4.get_direction_array()
     return jsonify(io_array)
 
-#@app.errorhandler(Exception)
-#def handle_exception(e):
-#    print(e)
-#    print("so")
-#    server.terminate()
-#    server.join()
-#    sys.exit()
 
+#Funktionen für die Steuerung der Labornetzteils
 
 def set_voltage(channel, voltage):
     inst.write(':INST:NSEL {}'.format(str(channel)))
@@ -298,15 +290,11 @@ if __name__ == '__main__':
         print(e)
     try:
         rm = pyvisa.ResourceManager()
+        #Eventuell ist der String in der folgenden Zeile zu ersetzen
         inst = rm.open_resource('USB0::0x1AB1::0x0E11::DP8B205101806::INSTR')
         set_voltage(1, 24)
         channel_high(1)
     except Exception as e:
         print(e)
 
-    #server = Process(target=app.run())
-    #server.start()
     app.run()
-
-
-#usb.dst==3.255.2 || usb.dst==3.255.4
