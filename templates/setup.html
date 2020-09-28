@@ -23,6 +23,22 @@ th {
     padding: 10px;
 }
 
+.borderyellowleft {
+    border-left: 1px solid #0FF;
+    padding: 10px;
+}
+
+.borderblueleft {
+    border-left: 1px solid #0FF;
+    border-right: 1px solid #0FF;
+    padding: 10px;
+}
+
+.borderbluebottom {
+    border-bottom: 1px solid #0FF;
+    padding: 10px;
+}
+
     </style>
 </head>
 <body>
@@ -60,7 +76,7 @@ th {
 
     <tr>
         <td class="labelname">AD0</td>
-        <td>
+        <td class="borderblueleft">
             <center>
             <input type="radio" id="AD0_out", name="AD0_out_in", value="output" checked="checked">
             </center>
@@ -71,7 +87,7 @@ th {
             </center>
         </td>
         <td class="labelname">AC0</td>
-        <td>
+        <td class="borderblueleft">
             <center>
             <input type="radio" id="AC0_out", name="AC0_out_in", value="output" checked="checked">
             </center>
@@ -82,7 +98,7 @@ th {
             </center>
         </td>
         <td class="labelname">BD0</td>
-        <td>
+        <td class="borderblueleft">
             <center>
             <input type="radio" id="BD0_out", name="BD0_out_in", value="output" checked="checked">
             </center>
@@ -93,7 +109,7 @@ th {
             </center>
         </td>
         <td class="labelname">BC0</td>
-        <td>
+        <td class="borderblueleft">
             <center>
             <input type="radio" id="BC0_out", name="BC0_out_in", value="output" checked="checked">
             </center>
@@ -104,6 +120,40 @@ th {
             </center>
         </td>
     </tr>
+    <tr class="borderbluebottom">
+        <td></td>
+        <td class="borderblueleft">
+            <input type="radio" id="AD0_0", name="AD0_out_01", value="input", checked="checked">
+            <label for="AD0_0">0</label>
+            <input type="radio" id="AD0_1", name="AD0_out_01", value="input">
+            <label for="AD0_1">1</label>
+        </td>
+        <td></td>
+        <td class="labelname"></td>
+        <td class="borderblueleft">
+            <input type="radio" id="AC0_0", name="AC0_out_01", value="input", checked="checked">
+            <label for="AC0_0">0</label>
+            <input type="radio" id="AC0_1", name="AC0_out_01", value="input">
+            <label for="AC0_1">1</label>
+        </td>
+        <td></td>
+        <td class="labelname"></td>
+        <td class="borderblueleft">
+            <input type="radio" id="BD0_0", name="BD0_out_01", value="input", checked="checked">
+            <label for="BD0_0">0</label>
+            <input type="radio" id="BD0_1", name="BD0_out_01", value="input">
+            <label for="BD0_1">1</label>
+        </td>
+        <td></td>
+        <td class="labelname"></td>
+        <td class="borderblueleft">
+            <input type="radio" id="BC0_0", name="BC0_out_01", value="input", checked="checked">
+            <label for="BC0_0">0</label>
+            <input type="radio" id="BC0_1", name="BC0_out_01", value="input">
+            <label for="BC0_1">1</label>
+        </td>
+        td></td>
+    </tr>
 
     <!--
     GPIO1
@@ -111,7 +161,7 @@ th {
 
     <tr>
         <td class="labelname">AD1</td>
-        <td>
+        <td class="borderblueleft">
             <center>
             <input type="radio" id="AD1_out", name="AD1_out_in", value="output" checked="checked">
             </center>
@@ -122,7 +172,7 @@ th {
             </center>
         </td>
         <td class="labelname">AC1</td>
-        <td>
+        <td class="borderblueleft">
             <center>
             <input type="radio" id="AC1_out", name="AC1_out_in", value="output" checked="checked">
             </center>
@@ -133,7 +183,7 @@ th {
             </center>
         </td>
         <td class="labelname">BD1</td>
-        <td>
+        <td class="borderblueleft">
             <center>
             <input type="radio" id="BD1_out", name="BD1_out_in", value="output" checked="checked">
             </center>
@@ -144,7 +194,7 @@ th {
             </center>
         </td>
         <td class="labelname">BC1</td>
-        <td>
+        <td class="borderblueleft">
             <center>
             <input type="radio" id="BC1_out", name="BC1_out_in", value="output" checked="checked">
             </center>
@@ -155,6 +205,40 @@ th {
             </center>
         </td>
     </tr>
+    <tr class="borderbluebottom">
+        <td></td>
+        <td class="borderblueleft">
+            <input type="radio" id="AD1_0", name="AD1_out_01", value="input", checked="checked">
+            <label for="AD1_0">0</label>
+            <input type="radio" id="AD1_1", name="AD1_out_01", value="input">
+            <label for="AD1_1">1</label>
+        </td>
+        <td></td>
+        <td class="labelname"></td>
+        <td class="borderblueleft">
+            <input type="radio" id="AC1_0", name="AC1_out_01", value="input", checked="checked">
+            <label for="AC1_0">0</label>
+            <input type="radio" id="AC1_1", name="AC1_out_01", value="input">
+            <label for="AC1_1">1</label>
+        </td>
+        <td></td>
+        <td class="labelname"></td>
+        <td class="borderblueleft">
+            <input type="radio" id="BD1_0", name="BD1_out_01", value="input", checked="checked">
+            <label for="BD1_0">0</label>
+            <input type="radio" id="BD1_1", name="BD1_out_01", value="input">
+            <label for="BD1_1">1</label>
+        </td>
+        <td></td>
+        <td class="labelname"></td>
+        <td class="borderblueleft">
+            <input type="radio" id="BC1_0", name="BC1_out_01", value="input", checked="checked">
+            <label for="BC1_0">0</label>
+            <input type="radio" id="BC1_1", name="BC1_out_01", value="input">
+            <label for="BC1_1">1</label>
+        </td>
+        td></td>
+    </tr>
 
     <!--
     GPIO2
@@ -162,7 +246,7 @@ th {
 
     <tr>
         <td class="labelname">AD2</td>
-        <td>
+        <td class="borderblueleft">
             <center>
             <input type="radio" id="AD2_out", name="AD2_out_in", value="output" checked="checked">
             </center>
@@ -173,7 +257,7 @@ th {
             </center>
         </td>
         <td class="labelname">AC2</td>
-        <td>
+        <td class="borderblueleft">
             <center>
             <input type="radio" id="AC2_out", name="AC2_out_in", value="output" checked="checked">
             </center>
@@ -184,7 +268,7 @@ th {
             </center>
         </td>
         <td class="labelname">BD2</td>
-        <td>
+        <td class="borderblueleft">
             <center>
             <input type="radio" id="BD2_out", name="BD2_out_in", value="output" checked="checked">
             </center>
@@ -195,7 +279,7 @@ th {
             </center>
         </td>
         <td class="labelname">BC2</td>
-        <td>
+        <td class="borderblueleft">
             <center>
             <input type="radio" id="BC2_out", name="BC2_out_in", value="output" checked="checked">
             </center>
@@ -206,6 +290,40 @@ th {
             </center>
         </td>
     </tr>
+    <tr class="borderbluebottom">
+        <td></td>
+        <td class="borderblueleft">
+            <input type="radio" id="AD2_0", name="AD2_out_01", value="input", checked="checked">
+            <label for="AD2_0">0</label>
+            <input type="radio" id="AD2_1", name="AD2_out_01", value="input">
+            <label for="AD2_1">1</label>
+        </td>
+        <td></td>
+        <td class="labelname"></td>
+        <td class="borderblueleft">
+            <input type="radio" id="AC2_0", name="AC2_out_01", value="input", checked="checked">
+            <label for="AC2_0">0</label>
+            <input type="radio" id="AC2_1", name="AC2_out_01", value="input">
+            <label for="AC2_1">1</label>
+        </td>
+        <td></td>
+        <td class="labelname"></td>
+        <td class="borderblueleft">
+            <input type="radio" id="BD2_0", name="BD2_out_01", value="input", checked="checked">
+            <label for="BD2_0">0</label>
+            <input type="radio" id="BD2_1", name="BD2_out_01", value="input">
+            <label for="BD2_1">1</label>
+        </td>
+        <td></td>
+        <td class="labelname"></td>
+        <td class="borderblueleft">
+            <input type="radio" id="BC2_0", name="BC2_out_01", value="input", checked="checked">
+            <label for="BC2_0">0</label>
+            <input type="radio" id="BC2_1", name="BC2_out_01", value="input">
+            <label for="BC2_1">1</label>
+        </td>
+        td></td>
+    </tr>
 
     <!--
     GPIO3
@@ -213,7 +331,7 @@ th {
 
     <tr>
         <td class="labelname">AD3</td>
-        <td>
+        <td class="borderblueleft">
             <center>
             <input type="radio" id="AD3_out", name="AD3_out_in", value="output" checked="checked">
             </center>
@@ -224,7 +342,7 @@ th {
             </center>
         </td>
         <td class="labelname">AC3</td>
-        <td>
+        <td class="borderblueleft">
             <center>
             <input type="radio" id="AC3_out", name="AC3_out_in", value="output" checked="checked">
             </center>
@@ -235,7 +353,7 @@ th {
             </center>
         </td>
         <td class="labelname">BD3</td>
-        <td>
+        <td class="borderblueleft">
             <center>
             <input type="radio" id="BD3_out", name="BD3_out_in", value="output" checked="checked">
             </center>
@@ -246,7 +364,7 @@ th {
             </center>
         </td>
         <td class="labelname">BC3</td>
-        <td>
+        <td class="borderblueleft">
             <center>
             <input type="radio" id="BC3_out", name="BC3_out_in", value="output" checked="checked">
             </center>
@@ -257,6 +375,40 @@ th {
             </center>
         </td>
     </tr>
+    <tr class="borderbluebottom">
+        <td></td>
+        <td class="borderblueleft">
+            <input type="radio" id="AD3_0", name="AD3_out_01", value="input", checked="checked">
+            <label for="AD3_0">0</label>
+            <input type="radio" id="AD3_1", name="AD3_out_01", value="input">
+            <label for="AD3_1">1</label>
+        </td>
+        <td></td>
+        <td class="labelname"></td>
+        <td class="borderblueleft">
+            <input type="radio" id="AC3_0", name="AC3_out_01", value="input", checked="checked">
+            <label for="AC3_0">0</label>
+            <input type="radio" id="AC3_1", name="AC3_out_01", value="input">
+            <label for="AC3_1">1</label>
+        </td>
+        <td></td>
+        <td class="labelname"></td>
+        <td class="borderblueleft">
+            <input type="radio" id="BD3_0", name="BD3_out_01", value="input", checked="checked">
+            <label for="BD3_0">0</label>
+            <input type="radio" id="BD3_1", name="BD0_out_01", value="input">
+            <label for="BD3_1">1</label>
+        </td>
+        <td></td>
+        <td class="labelname"></td>
+        <td class="borderblueleft">
+            <input type="radio" id="BC3_0", name="BC3_out_01", value="input", checked="checked">
+            <label for="BC3_0">0</label>
+            <input type="radio" id="BC3_1", name="BC3_out_01", value="input">
+            <label for="BC3_1">1</label>
+        </td>
+        td></td>
+    </tr>
 
     <!--
     GPIO4
@@ -264,7 +416,7 @@ th {
 
     <tr>
         <td class="labelname">AD4</td>
-        <td>
+        <td class="borderblueleft">
             <center>
             <input type="radio" id="AD4_out", name="AD4_out_in", value="output" checked="checked">
             </center>
@@ -275,7 +427,7 @@ th {
             </center>
         </td>
         <td class="labelname">AC4</td>
-        <td>
+        <td class="borderblueleft">
             <center>
             <input type="radio" id="AC4_out", name="AC4_out_in", value="output" checked="checked">
             </center>
@@ -286,7 +438,7 @@ th {
             </center>
         </td>
         <td class="labelname">BD4</td>
-        <td>
+        <td class="borderblueleft">
             <center>
             <input type="radio" id="BD4_out", name="BD4_out_in", value="output" checked="checked">
             </center>
@@ -297,7 +449,7 @@ th {
             </center>
         </td>
         <td class="labelname">BC4</td>
-        <td>
+        <td class="borderblueleft">
             <center>
             <input type="radio" id="BC4_out", name="BC4_out_in", value="output" checked="checked">
             </center>
@@ -315,7 +467,7 @@ th {
 
     <tr>
         <td class="labelname">AD5</td>
-        <td>
+        <td class="borderblueleft">
             <center>
             <input type="radio" id="AD5_out", name="AD5_out_in", value="output" checked="checked">
             </center>
@@ -326,7 +478,7 @@ th {
             </center>
         </td>
         <td class="labelname">AC5</td>
-        <td>
+        <td class="borderblueleft">
             <center>
             <input type="radio" id="AC5_out", name="AC5_out_in", value="output" checked="checked">
             </center>
@@ -337,7 +489,7 @@ th {
             </center>
         </td>
         <td class="labelname">BD5</td>
-        <td>
+        <td class="borderblueleft">
             <center>
             <input type="radio" id="BD5_out", name="BD5_out_in", value="output" checked="checked">
             </center>
@@ -348,7 +500,7 @@ th {
             </center>
         </td>
         <td class="labelname">BC5</td>
-        <td>
+        <td class="borderblueleft">
             <center>
             <input type="radio" id="BC5_out", name="BC5_out_in", value="output" checked="checked">
             </center>
@@ -366,7 +518,7 @@ th {
 
     <tr>
         <td class="labelname">AD6</td>
-        <td>
+        <td class="borderblueleft">
             <center>
             <input type="radio" id="AD6_out", name="AD6_out_in", value="output" checked="checked">
             </center>
@@ -377,7 +529,7 @@ th {
             </center>
         </td>
         <td class="labelname">AC6</td>
-        <td>
+        <td class="borderblueleft">
             <center>
             <input type="radio" id="AC6_out", name="AC6_out_in", value="output" checked="checked">
             </center>
@@ -388,7 +540,7 @@ th {
             </center>
         </td>
         <td class="labelname">BD6</td>
-        <td>
+        <td class="borderblueleft">
             <center>
             <input type="radio" id="BD6_out", name="BD6_out_in", value="output" checked="checked">
             </center>
@@ -399,7 +551,7 @@ th {
             </center>
         </td>
         <td class="labelname">BC6</td>
-        <td>
+        <td class="borderblueleft">
             <center>
             <input type="radio" id="BC6_out", name="BC6_out_in", value="output" checked="checked">
             </center>
@@ -417,7 +569,7 @@ th {
 
     <tr>
         <td class="labelname">AD7</td>
-        <td>
+        <td class="borderblueleft">
             <center>
             <input type="radio" id="AD7_out", name="AD7_out_in", value="output" checked="checked">
             </center>
@@ -428,7 +580,7 @@ th {
             </center>
         </td>
         <td class="labelname">AC7</td>
-        <td>
+        <td class="borderblueleft">
             <center>
             <input type="radio" id="AC7_out", name="AC7_out_in", value="output" checked="checked">
             </center>
@@ -439,7 +591,7 @@ th {
             </center>
         </td>
         <td class="labelname">BD7</td>
-        <td>
+        <td class="borderblueleft">
             <center>
             <input type="radio" id="BD7_out", name="BD7_out_in", value="output" checked="checked">
             </center>
@@ -450,7 +602,7 @@ th {
             </center>
         </td>
         <td class="labelname">BC7</td>
-        <td>
+        <td class="borderblueleft">
             <center>
             <input type="radio" id="BC7_out", name="BC7_out_in", value="output" checked="checked">
             </center>
