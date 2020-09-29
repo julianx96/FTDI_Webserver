@@ -27,6 +27,28 @@ python3 main.py
 
 Server
 ---
-The server setup page for the FTDI Module can be reached by the URL http:127.0.0.1:5000/setup
+The server setup page for the FTDI Module can be reached by the URL http:127.0.0.1:5000/setup/<number of FTDI>
+The parameter <number of FTDI> can be 0, 1, 2, 3 or 4, depending on which FT2232H Mini Module you want to configure/control.
+ 
+By clicking the Apply Button you will get redirectet to the GUI control page or you can access it by the URL http:127.0.0.1:5000/gui/<number of FTDI>
 
-By clicking the Apply Button you will get redirectet to the GUI control page
+The laboratory power supply will be automatically set to 24V on channel 1. It gets initialized with the following command:
+```
+inst = rm.open_resource('USB0::0x1AB1::0x0E11::DP8B205101806::INSTR')
+```
+
+Maybe you have to change the String in the brackets. To find out what string you have to use you can get it that way:
+```
+import pyvisa
+rm = pyvisa.ResourceManager()
+print(rm.list_resources())
+```
+This should return the string. To verify do:
+```
+import pyvisa
+rm = pyvisa.ResourceManager()
+print(rm.list_resources())
+inst = rm.open_resource('<string from print command>')
+print(inst.query("*IDN?"))
+```
+
