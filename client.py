@@ -83,7 +83,7 @@ def read_pio1(ftdi, board):
 	elif board == 3:
 		gpio = 'BD1'
 	setGPIODirection(FTDI=ftdi, GPIO=gpio, direction='input')
-	readGPIO(FTDI=ftdi, GPIO=gpio)
+	return readGPIO(FTDI=ftdi, GPIO=gpio)
 
 
 def pio2_on(ftdi, board):
@@ -120,7 +120,7 @@ def read_pio2(ftdi, board):
 	elif board == 3:
 		gpio = 'BD2'
 	setGPIODirection(FTDI=ftdi, GPIO=gpio, direction='input')
-	readGPIO(FTDI=ftdi, GPIO=gpio)
+	return readGPIO(FTDI=ftdi, GPIO=gpio)
 
 def led_on(ftdi, board):
 	if board == 0:
@@ -156,7 +156,7 @@ def read_led(ftdi, board):
 	elif board == 3:
 		gpio = 'BD3'
 	setGPIODirection(FTDI=ftdi, GPIO=gpio, direction='input')
-	readGPIO(FTDI=ftdi, GPIO=gpio)
+	return readGPIO(FTDI=ftdi, GPIO=gpio)
 
 def rdy_on(ftdi, board):
 	if board == 0:
@@ -192,7 +192,7 @@ def read_rdy(ftdi, board):
 	elif board == 3:
 		gpio = 'BD4'
 	setGPIODirection(FTDI=ftdi, GPIO=gpio, direction='input')
-	readGPIO(FTDI=ftdi, GPIO=gpio)
+	return readGPIO(FTDI=ftdi, GPIO=gpio)
 
 
 def run_on(ftdi, board):
@@ -229,7 +229,7 @@ def read_run(ftdi, board):
 	elif board == 3:
 		gpio = 'BD5'
 	setGPIODirection(FTDI=ftdi, GPIO=gpio, direction='input')
-	readGPIO(FTDI=ftdi, GPIO=gpio)
+	return readGPIO(FTDI=ftdi, GPIO=gpio)
 
 
 def reset_on(ftdi, board):
@@ -290,4 +290,4 @@ def usb_run(ftdi, board):
 	elif board == 3:
 		gpio = 'BD7'
 	setGPIODirection(FTDI=ftdi, GPIO=gpio, direction='input')
-	readGPIO(FTDI=ftdi, GPIO=gpio)
+	return readGPIO(FTDI=ftdi, GPIO=gpio)

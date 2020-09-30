@@ -270,7 +270,7 @@ def channel_low(channel):
 if __name__ == '__main__':
     #ftdi0 = FTDI2232H(url='ftdi://ftdi:2232:FT46S3T7/1')
     try:
-        ftdi0 = FTDI2232H(url='ftdi://ftdi:2232:FT5G94I0/1')
+        ftdi0 = FTDI2232H(url='ftdi://ftdi:2232:FT5G3RPG/1')
     except Exception as e:
         print(e)
     try:
