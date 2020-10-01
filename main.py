@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template, url_for, redirect, request
+from flask import Flask, jsonify, render_template, url_for, redirect, request, Markup
 from pyftdi.ftdi import USBError, FtdiError
 from FT2232H import *
 
@@ -73,7 +73,8 @@ def setup(num):
             ftdi4.set_direction_2(bitmask_i1=mask_direction_interface1, bitmask_i2=mask_direction_interface2, state_i1=i1_out_state_array, state_i2=i2_out_state_array)
         url = '.gui/FTDI{}'.format(str(num))
         return redirect(url_for('gui', num=num))
-    return render_template('setup.html', ftdi=num)
+    #return render_template('setup.html', ftdi=num, check=Markup(', checked="checked"'))
+    return render_template('setup.html', ftdi=num, check=[', checked="checked"',''])
 
 
 

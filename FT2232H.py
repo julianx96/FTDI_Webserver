@@ -712,4 +712,89 @@ class FTDI2232H():
                 interface2_IO_bitmask |= 1 << i
         return interface1_IO_bitmask, interface2_IO_bitmask, interface1_output_state_array, interface2_output_state_array
 
+    def setup_check_io(self):
+        """Returns an array which contains information about the GPIO so that the checkboxes on the setup page get set accordingly to the GPIO states.
+
+        :return: array string
+        """
+        checkboxes = []
+        for i in range(8):
+            #Check Input/Output
+            #Interface1
+            if self.gpio_array_interface1[i]['direction'] != 0:
+                checkboxes.append(', checked="checked"')
+                checkboxes.append("")
+            else:
+                checkboxes.append("")
+                checkboxes.append(', checked="checked"')
+            if self.gpio_array_interface1[i+8]['direction'] != 0:
+                checkboxes.append(', checked="checked"')
+                checkboxes.append("")
+            else:
+                checkboxes.append("")
+                checkboxes.append(', checked="checked"')
+
+            #Interface2
+            if self.gpio_array_interface2[i]['direction'] != 0:
+                checkboxes.append(', checked="checked"')
+                checkboxes.append("")
+            else:
+                checkboxes.append("")
+                checkboxes.append(', checked="checked"')
+            if self.gpio_array_interface2[i+8]['direction'] != 0:
+                checkboxes.append(', checked="checked"')
+                checkboxes.append("")
+            else:
+                checkboxes.append("")
+                checkboxes.append(', checked="checked"')
+
+            #Check 1/0
+            #Interface1
+            if self.gpio_array_interface1[i]['direction'] != 0:
+                if self.gpio_array_interface1[i]['GPIO']['output_state'] == 1:
+                    checkboxes.append("")
+                    checkboxes.append(', checked="checked"')
+                else:
+                    checkboxes.append(', checked="checked"')
+                    checkboxes.append("")
+            else:
+                checkboxes.append(', checked="checked"')
+                checkboxes.append("")
+            if self.gpio_array_interface1[i+8]['direction'] != 0:
+                if self.gpio_array_interface1[i+8]['GPIO']['output_state'] == 1:
+                    checkboxes.append("")
+                    checkboxes.append(', checked="checked"')
+                else:
+                    checkboxes.append(', checked="checked"')
+                    checkboxes.append("")
+            else:
+                checkboxes.append(', checked="checked"')
+                checkboxes.append("")
+
+            #Interface2
+            if self.gpio_array_interface2[i]['direction'] != 0:
+                if self.gpio_array_interface2[i]['GPIO']['output_state'] == 1:
+                    checkboxes.append("")
+                    checkboxes.append(', checked="checked"')
+                else:
+                    checkboxes.append(', checked="checked"')
+                    checkboxes.append("")
+            else:
+                checkboxes.append(', checked="checked"')
+                checkboxes.append("")
+            if self.gpio_array_interface2[i+8]['direction'] != 0:
+                if self.gpio_array_interface2[i+8]['GPIO']['output_state'] == 1:
+                    checkboxes.append("")
+                    checkboxes.append(', checked="checked"')
+                else:
+                    checkboxes.append(', checked="checked"')
+                    checkboxes.append("")
+            else:
+                checkboxes.append(', checked="checked"')
+                checkboxes.append("")
+        print(checkboxes)
+        return checkboxes
+
+
+
 
